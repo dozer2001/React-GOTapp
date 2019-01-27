@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './charDetails.css';
+
 export default class CharDetails extends Component {
 
     render() {
         return (
-            <div className="char-details rounded">
+            <div className="char-details">
                 <h4>John Snow</h4>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between">

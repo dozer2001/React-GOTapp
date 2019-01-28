@@ -17,7 +17,7 @@ export default class GotServices {
     getCharacter(id){
         return this.getResource(`/characters/${id}`);
     }
-    getBooks(){
+    getAllBooks(){
         return this.getResource(`/books`);
     }
     getBook(id){
@@ -25,7 +25,7 @@ export default class GotServices {
     }
     getHouse(id){
         return this.getResource(`/houses/${id}`);
-    }getHouses(){
+    }getAllHouses(){
         return this.getResource(`/houses`);
     }
 }
@@ -34,9 +34,9 @@ get.getAllCharacters()
     .then(res => console.log(res));
 get.getCharacter(15)
     .then(res => console.log(res));
-get.getBooks()
+get.getAllBooks()
     .then(res => console.log(res));
-get.getHouses()
+get.getAllHouses()
     .then(res => console.log(res));
 get.getBook(4)
     .then(res => console.log(res));

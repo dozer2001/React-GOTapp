@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import { ListGroup,ListGroupItem } from 'reactstrap';
 
 const CharsDetails = styled.div `
  background-color: #fff;
@@ -20,24 +21,24 @@ export default class CharDetails extends Component {
         return (
             <CharsDetails>
                 <h4>John Snow</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between">
+                <ListGroup className="list-group list-group-flush">
+                    <ListGroupItem className="list-group-item d-flex justify-content-between">
                         <span className="term">Gender</span>
                         <span>male</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item d-flex justify-content-between">
                         <span className="term">Born</span>
                         <span>1783</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item d-flex justify-content-between">
                         <span className="term">Died</span>
                         <span>1820</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
+                    </ListGroupItem>
+                    <ListGroupItem className="list-group-item d-flex justify-content-between">
                         <span className="term">Culture</span>
                         <span>First</span>
-                    </li>
-                </ul>
+                    </ListGroupItem>
+                </ListGroup>
             </CharsDetails>
         );
     }

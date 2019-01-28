@@ -17,19 +17,19 @@ export default class GotServices {
     getCharacter(id){
         return this.getResource(`/characters/${id}`);
     }
-    getBook(id){
-        return this.getResource(`/books/${id}`);
+    getBook(){
+        return this.getResource(`/books`);
     }
-    getHouse(id){
-        return this.getResource(`/houses/${id}`);
+    getHouse(){
+        return this.getResource(`/houses`);
     }
 }
 const get = new GotServices();
-get.getAllCharacters()
-    .then(res => console.log(res));
-get.getCharacter(15)
-    .then(res => console.log(res));
-get.getBook(1)
+// get.getAllCharacters()
+//     .then(res => console.log(res));
+// get.getCharacter(15)
+//     .then(res => console.log(res));
+get.getBook()
     .then(res => console.log(res));
 get.getHouse(4)
     .then(res => console.log(res));

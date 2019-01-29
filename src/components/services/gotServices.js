@@ -1,44 +1,75 @@
 export default class GotServices {
-    constructor(){
+    constructor() {
         this._apiBase = "https://www.anapioficeandfire.com/api";
     }
-    async getResource(url){
+
+    async getResource(url) {
         const res = await fetch(`${this._apiBase}${url}`);
-        if(!res.ok){
-            throw new Error(`Could not fetch ${url}`+
+
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}` +
                 `, received ${res.status}`);
         }
         return await res.json();
     }
 
-    getAllCharacters(){
-        return this.getResource(`/characters?page=5&pageSize=10`);
+  async  getAllCharacters() {
+        const res = await this.getResource(`/characters?page=5&pageSize=10`);
+        return res.map(this._transformCharcter)
     }
-    getCharacter(id){
-        return this.getResource(`/characters/${id}`);
+
+   async getCharacter(id) {
+       const charcter = await this.getResource(`/characters/${id}`);
+       return this._transformCharcter((charcter))
     }
-    getAllBooks(){
-        return this.getResource(`/books`);
+
+   async getAllBooks() {
+        const allbooks =  await this.getResource(`/books`);
+        return allbooks.map(this._transformCharcter)
     }
-    getBook(id){
-        return this.getResource(`/books/${id}`);
+
+    async  getBook(id) {
+        const book = await this.getResource(`/books/${id}`);
+        return this._transformCharcter((book));
     }
-    getHouse(id){
-        return this.getResource(`/houses/${id}`);
-    }getAllHouses(){
-        return this.getResource(`/houses`);
+
+    async getHouse(id) {
+        const house = await this.getResource(`/houses/${id}`);
+        return this._transformCharcter((house))
     }
+
+    async getAllHouses() {
+       const allhouse = await this.getResource(`/houses`);
+       return allhouse.map(this._transformCharcter)
+    }
+
+    _transformCharcter(char) {
+        return {
+            name: char.name,
+            gender: char.gender,
+            born: char.born,
+            died: char.died,
+            culture: char.culture
+        }
+    }
+
+    _transformHouse(house){
+        return{
+            name:house.name,
+            region: house.region,
+            words: house.words,
+            titles: house.titles,
+            overlod: house.overlord,
+            ancestralWeapons: house.ancestralWeapons
+        }
+    }
+    _transformBook(book){
+        return{
+            name: book.name,
+            numberOfPages: book.numberOfPages,
+            publiser: book.publiser,
+            released: book.released
+        }
+    }
+
 }
-const get = new GotServices();
-get.getAllCharacters()
-    .then(res => console.log(res));
-get.getCharacter(15)
-    .then(res => console.log(res));
-get.getAllBooks()
-    .then(res => console.log(res));
-get.getAllHouses()
-    .then(res => console.log(res));
-get.getBook(4)
-    .then(res => console.log(res));
-get.getHouse(4)
-    .then(res => console.log(res));

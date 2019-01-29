@@ -37,13 +37,15 @@ export default class ItemList extends Component {
 
         return arr.map((item, i) =>{
             const idd =  item;
-            const idkey = idd.url.slice(idd.url.length -2);
+            const idkey = idd.url.slice(idd.url.length -5);
+            const idikey = idkey.replace(/[^.\d]+/g,"");
+
 
             return(
                 <li
-                    key={idkey}
+                    key={idikey}
                     className="list-group-item"
-                     onClick={ () => this.props.onCharSelected(idkey)}
+                     onClick={ () => this.props.onCharSelected(idikey)}
                      >
                     {item.name}
                 </li>

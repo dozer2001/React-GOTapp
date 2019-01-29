@@ -2,34 +2,42 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import CharacterPage from '../characterPage';
+import ErrorMessege from '../errorMessege';
 
 
 export default class App extends Component {
     constructor() {
         super();
         this.state = {
-            dis: true
+            dis: true,
+            error: false
         };
         this.CharDissepia = this.CharDissepia.bind(this)
     }
 
-    CharDissepia(){
-        if(this.state.dis) {
-            this.setState({
-                dis: false
-            })
-        }else{
-            this.setState({
-                dis: true
-            })
-        }
+    componentDidCatch() {
+        this.setState({
+            error: true
+        })
     }
 
+    CharDissepia() {
+        console.log(1);
+        this.setState(() => {
+            return {
+                dis: !this.state.dis
+            }
+        })
+
+    }
+
+
     render() {
-        const {dis} = this.state;
-        const dissepia = dis? <RandomChar/> : null;
+        const dissepia = this.state.dis ? <RandomChar/> : null;
+        if(this.state.error){
+            return <ErrorMessege/>
+        }
         return (
             <>
             <Container>
@@ -42,14 +50,7 @@ export default class App extends Component {
                         <button onClick={this.CharDissepia}>Kilck me</button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList/>
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails/>
-                    </Col>
-                </Row>
+                <CharacterPage/>
             </Container>
             </>
         )

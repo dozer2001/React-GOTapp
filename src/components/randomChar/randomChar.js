@@ -18,7 +18,6 @@ font-weight: bold;`;
 export default class RandomChar extends Component {
     constructor() {
         super();
-        this.updateChar()
     }
 
     gotService = new gorService();
@@ -27,6 +26,13 @@ export default class RandomChar extends Component {
         loading: true,
         error: false
     };
+    componentDidMount(){
+        this.updateChar();
+        this.timerId =  setInterval(this.updateChar, 1500);
+    }
+    componentWillUnmount(){
+        clearInterval(this.timerId)
+    }
 
     onCharLoaded = (char) => {
         this.setState({
@@ -43,13 +49,12 @@ export default class RandomChar extends Component {
 
     };
 
-    updateChar() {
-        // const id = Math.floor(Math.random() * 140 + 25);
-        const id = 15000
+    updateChar = () => {
+        const id = Math.floor(Math.random() * 140 + 25);
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
-    }
+    };
 
     render() {
         const {char, loading, error} = this.state;

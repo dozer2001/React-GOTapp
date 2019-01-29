@@ -14,7 +14,8 @@ export default class ItemList extends Component {
     gorService = new gotService();
     state = {
         charList: null,
-        error: false
+        error: false,
+        loading: true
     };
     componentDidCatch() {
         this.setState({
@@ -26,7 +27,8 @@ export default class ItemList extends Component {
         this.gorService.getAllCharacters()
             .then((charList) => {
                 this.setState({
-                    charList
+                    charList,
+                    loading: false
                 })
             })
     }
@@ -41,7 +43,7 @@ export default class ItemList extends Component {
                 <li
                     key={idkey}
                     className="list-group-item"
-                     onClick={ () => this.props.onCharSelected(41 + i)}
+                     onClick={ () => this.props.onCharSelected(idkey)}
                      >
                     {item.name}
                 </li>

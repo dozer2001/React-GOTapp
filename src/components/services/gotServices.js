@@ -44,15 +44,27 @@ export default class GotServices {
     }
 
     _transformCharater(char) {
-        return {
-            url: char.url,
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture,
 
-        }
+        // const nothing = 'no data';
+        // for(let key in char){
+        //
+        //     if((char[key] === '' ) && (key === 'died') ) {
+        //         console.log()
+        //     }
+        // }
+
+
+            return {
+                url: char.url,
+                name: char.name,
+                gender: char.gender,
+                born: char.born,
+                died: char.died,
+                culture: char.culture,
+
+            }
+
+
     }
 
     _transformHouse(house){

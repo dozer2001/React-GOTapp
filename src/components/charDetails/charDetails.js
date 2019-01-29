@@ -19,7 +19,6 @@ const SelectError = styled.div`
     text-align: center;
     font-size: 26px;`;
 export default class CharDetails extends Component {
-
     gotService = new gorService();
     state = {
         char: null,
@@ -35,12 +34,15 @@ export default class CharDetails extends Component {
         if (this.props.charId !== prevProps.charId) {
             this.updateChar();
         }
+
     }
+
     componentDidCatch() {
         this.setState({
             error: true
         })
     }
+
     updateChar() {
         const {charId} = this.props;
         if (!charId) {
@@ -50,14 +52,20 @@ export default class CharDetails extends Component {
             .then((char) => {
                 this.setState({
                     char,
-                    loading: false})
+                    loading: false
+                })
             })
-        // this.foo.bar = 0;
     }
 
+
+
     render() {
-        if(this.state.error){
+        if (this.state.error) {
             return <ErrorMessege/>
+        }
+        if (this.state.loading) {
+            console.log('spiner');
+            return <Spinner/>
         }
         if (!this.state.char) {
             return <span className="select-error">Please celect a character</span>
@@ -65,9 +73,8 @@ export default class CharDetails extends Component {
 
         const {name, gender, born, died, culture} = this.state.char;
 
-        if(this.state.loading){
-            return <Spinner/>
-        }
+
+
 
         return (
             <CharsDetails>
@@ -83,7 +90,7 @@ export default class CharDetails extends Component {
                     </ListGroupItem>
                     <ListGroupItem className="d-flex justify-content-between">
                         <span className="term">Died</span>
-                        <span>{died}</span>
+                        <span className="died">{died}</span>
                     </ListGroupItem>
                     <ListGroupItem className="d-flex justify-content-between">
                         <span className="term">Culture</span>

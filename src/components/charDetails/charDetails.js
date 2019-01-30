@@ -18,6 +18,18 @@ const SelectError = styled.div`
     color: #fff;
     text-align: center;
     font-size: 26px;`;
+
+const Field = ({char, field, label}) => {
+    return (
+        <ListGroupItem className="d-flex justify-content-between">
+            <span className="term">{label}</span>
+            <span>{char[field]}</span>
+        </ListGroupItem>
+    )
+};
+export {
+    Field
+}
 export default class CharDetails extends Component {
     gotService = new gorService();
     state = {
@@ -58,7 +70,6 @@ export default class CharDetails extends Component {
     }
 
 
-
     render() {
         if (this.state.error) {
             return <ErrorMessege/>
@@ -69,29 +80,18 @@ export default class CharDetails extends Component {
         if (!this.state.char) {
             return <span className="select-error">Please celect a character</span>
         }
-
-        const {name, gender, born, died, culture} = this.state.char;
+        const {char} = this.state;
+        const {name} = char;
 
         return (
             <CharsDetails>
                 <h4>{name}</h4>
                 <ListGroup className="list-group-flush">
-                    <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Gender</span>
-                        <span>{gender}</span>
-                    </ListGroupItem>
-                    <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Born</span>
-                        <span>{born}</span>
-                    </ListGroupItem>
-                    <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Died</span>
-                        <span className="died">{died}</span>
-                    </ListGroupItem>
-                    <ListGroupItem className="d-flex justify-content-between">
-                        <span className="term">Culture</span>
-                        <span>{culture}</span>
-                    </ListGroupItem>
+                    {
+                        React.Children.map(this.props.children, (child) =>{
+                            return React.cloneElement(child, {char})
+                    })
+                    }
                 </ListGroup>
             </CharsDetails>
         );

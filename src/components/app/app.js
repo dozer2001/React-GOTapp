@@ -4,6 +4,9 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import CharacterPage from '../characterPage';
 import ErrorMessege from '../errorMessege';
+import ItemList from '../itemList';
+import CharDetails from '../charDetails';
+import gotService from '../services/gotServices';
 
 
 export default class App extends Component {
@@ -15,6 +18,8 @@ export default class App extends Component {
         };
         this.CharDissepia = this.CharDissepia.bind(this)
     }
+
+    gotService = new gotService();
 
     componentDidCatch() {
         this.setState({
@@ -32,10 +37,9 @@ export default class App extends Component {
 
     }
 
-
     render() {
         const dissepia = this.state.dis ? <RandomChar/> : null;
-        if(this.state.error){
+        if (this.state.error) {
             return <ErrorMessege/>
         }
         return (
@@ -51,6 +55,26 @@ export default class App extends Component {
                     </Col>
                 </Row>
                 <CharacterPage/>
+                <Row>
+                    <Col md='6'>
+                        <ItemList onItemSelected={this.onItemSelected}
+                                  getData={this.gotService.getAllBooks}
+                                  renderItem={(item) => (item.name)}/>
+                    </Col>
+                    <Col md='6'>
+                        <CharDetails charId={this.state.selectedChar}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md='6'>
+                        <ItemList onItemSelected={this.onItemSelected}
+                                  getData={this.gotService.getAllHouses}
+                                  renderItem={(item) => item.name}/>
+                    </Col>
+                    <Col md='6'>
+                        <CharDetails charId={this.state.selectedChar}/>
+                    </Col>
+                </Row>
             </Container>
             </>
         )

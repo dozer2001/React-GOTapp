@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import gotService from '../services/gotServices'
 import styled from 'styled-components';
 import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
@@ -11,12 +10,12 @@ li{cursor: pointer;}`;
 
 export default class ItemList extends Component {
 
-    gorService = new gotService();
     state = {
-        charList: null,
+        itemList: null,
         error: false,
         loading: true
     };
+
     componentDidCatch() {
         this.setState({
             error: true
@@ -24,45 +23,46 @@ export default class ItemList extends Component {
     }
 
     componentDidMount() {
-        this.gorService.getAllCharacters()
-            .then((charList) => {
+        const{getData} = this.props;
+
+
+      getData()
+            .then((itemList) => {
                 this.setState({
-                    charList,
+                    itemList,
                     loading: false
                 })
             })
     }
 
     renderItems(arr){
-
+        console.log(arr);
         return arr.map((item, i) =>{
-            const idd =  item;
-            const idkey = idd.url.slice(idd.url.length -5);
-            const idikey = idkey.replace(/[^.\d]+/g,"");
 
+            const label = this.props.renderItem(item);
 
             return(
                 <li
-                    key={idikey}
+                    key={item.id}
                     className="list-group-item"
-                     onClick={ () => this.props.onCharSelected(idikey)}
+                     onClick={ () => this.props.onItemSelected(item.id)}
                      >
-                    {item.name}
+                    {label}
                 </li>
             )
         })
     }
     render() {
-        const {charList} = this.state;
+        const {itemList} = this.state;
 
         if(this.state.loading){
             return <Spinner/>
         }
 
-        if (!charList) {
+        if (!itemList) {
             return <Spinner/>
         }
-        const items =this.renderItems(charList);
+        const items =this.renderItems(itemList);
         return (
             <ItemListUl className="list-group">
                 {items}

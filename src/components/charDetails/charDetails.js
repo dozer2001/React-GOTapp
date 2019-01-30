@@ -6,12 +6,12 @@ import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
 
 const CharsDetails = styled.div `
- background-color: #fff;
+  background-color: #fff;
     padding: 25px 25px 15px 25px;
     margin-bottom: 40px;
-    h4
+    h4{
      margin-bottom: 20px;
-     text-align: center;
+     text-align: center;}
     
 `;
 const SelectError = styled.div`
@@ -64,7 +64,6 @@ export default class CharDetails extends Component {
             return <ErrorMessege/>
         }
         if (this.state.loading) {
-            console.log('spiner');
             return <Spinner/>
         }
         if (!this.state.char) {
@@ -72,9 +71,6 @@ export default class CharDetails extends Component {
         }
 
         const {name, gender, born, died, culture} = this.state.char;
-
-
-
 
         return (
             <CharsDetails>

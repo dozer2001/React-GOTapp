@@ -7,7 +7,8 @@ import ErrorMessege from '../errorMessege';
 export default class CharacterPage extends  Component{
 
     state = {
-        selectedChar: 130
+        selectedChar: 130,
+        error: false
     };
 
     onCharSelected = (id) => {

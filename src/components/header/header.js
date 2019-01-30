@@ -19,7 +19,7 @@ const HeaderLinks = styled.ul`
     list-style-type: none;
     li{
     margin-right: 20px;
-    font-size: 18px;
+    font-size: 18px;}
     `;
 const Header = () => {
     return (

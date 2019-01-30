@@ -45,15 +45,13 @@ export default class GotServices {
 
     _transformCharater(char) {
 
-        // const nothing = 'no data';
-        // for(let key in char){
-        //
-        //     if((char[key] === '' ) && (key === 'died') ) {
-        //         console.log()
-        //     }
-        // }
+        const nothing = 'no data';
+        for(let key in char){
 
+            if((char[key] === '' ) && (key === 'died' || key === 'gender' || key === 'born' || key === 'culture') ) {
 
+            }
+        }
             return {
                 url: char.url,
                 name: char.name,
@@ -61,7 +59,6 @@ export default class GotServices {
                 born: char.born,
                 died: char.died,
                 culture: char.culture,
-
             }
 
 

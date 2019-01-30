@@ -5,8 +5,8 @@ import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
 
 const ItemListUl = styled.ul`
-cursor: pointer;
-ul{cursor: pointer;}`;
+
+li{cursor: pointer;}`;
 
 
 export default class ItemList extends Component {

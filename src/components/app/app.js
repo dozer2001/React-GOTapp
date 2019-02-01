@@ -3,9 +3,11 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import CharacterPage from '../characterPage';
+import BooksPage from '../pages/BooksPage';
+import HousesPage from '../pages/HousesPage';
 import ErrorMessege from '../errorMessege';
 import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import ItemDetails from '../itemDetails';
 import gotService from '../services/gotServices';
 
 
@@ -51,30 +53,13 @@ export default class App extends Component {
                 <Row>
                     <Col lg={{size: 5, offset: 0}}>
                         {dissepia}
-                        <button onClick={this.CharDissepia}>Kilck me</button>
+                        <button onClick={this.CharDissepia}>Klick me</button>
                     </Col>
                 </Row>
                 <CharacterPage/>
-                <Row>
-                    <Col md='6'>
-                        <ItemList onItemSelected={this.onItemSelected}
-                                  getData={this.gotService.getAllBooks}
-                                  renderItem={(item) => (item.name)}/>
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails charId={this.state.selectedChar}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList onItemSelected={this.onItemSelected}
-                                  getData={this.gotService.getAllHouses}
-                                  renderItem={(item) => item.name}/>
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails charId={this.state.selectedChar}/>
-                    </Col>
-                </Row>
+                <BooksPage/>
+                <HousesPage/>
+
             </Container>
             </>
         )

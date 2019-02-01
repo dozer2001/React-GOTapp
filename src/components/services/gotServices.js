@@ -25,22 +25,22 @@ export default class GotServices {
 
     getAllBooks = async () => {
         const allbooks = await this.getResource(`/books`);
-        return allbooks.map(this._transformCharater)
+        return allbooks.map(this._transformBook)
     };
 
     getBook = async (id) => {
         const book = await this.getResource(`/books/${id}`);
-        return this._transformCharater((book));
+        return this._transformBook((book));
     };
 
     getHouse = async (id) => {
         const house = await this.getResource(`/houses/${id}`);
-        return this._transformCharater((house))
+        return this._transformHouse((house))
     };
 
     getAllHouses = async (id) => {
         const allhouse = await this.getResource(`/houses`);
-        return allhouse.map(this._transformCharater)
+        return allhouse.map(this._transformHouse)
     };
 
     noData = (data) => {
@@ -67,25 +67,27 @@ export default class GotServices {
         }
 
 
-    }
+    };
 
     _transformHouse = (house) => {
         return {
-            name: house.name,
-            region: house.region,
-            words: house.words,
-            titles: house.titles,
-            overlod: house.overlord,
-            ancestralWeapons: house.ancestralWeapons
+            id: this.itemKey(house),
+            name: this.noData(house.name),
+            region: this.noData(house.region),
+            words: this.noData(house.words),
+            titles: this.noData(house.titles),
+            overlod: this.noData(house.overlod),
+            ancestralWeapons: this.noData(house.ancestralWeapons)
         }
     };
 
     _transformBook = (book) => {
         return {
-            name: book.name,
-            numberOfPages: book.numberOfPages,
-            publiser: book.publiser,
-            released: book.released
+            id: this.itemKey(book),
+            name: this.noData(book.name),
+            numberOfPages: this.noData(book.numberOfPages),
+            publiser: this.noData(book.publiser),
+            released: this.noData(book.released)
         }
     }
 

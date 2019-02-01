@@ -3,6 +3,8 @@ import gorService from '../services/gotServices'
 import styled from 'styled-components';
 import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
+import {ListGroup, ListGroupItem} from 'reactstrap';
+
 
 const RandomBlock = styled.div`
     {background-color: #fff;
@@ -76,24 +78,24 @@ const View = ({char}) => {
     return (
         <>
         <h4>Random Character: {name}</h4>
-        <ul className="list-group list-group-flush">
-            <li className="list-group-item d-flex justify-content-between">
+        <ListGroup className="list-group list-group-flush">
+            <lListGroupItemi className="list-group-item d-flex justify-content-between">
                 <Term>Gender </Term>
                 <span>{gender}</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between">
+            </lListGroupItemi>
+            <lListGroupItemi className="list-group-item d-flex justify-content-between">
                 <Term>Born </Term>
                 <span>{born}</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between">
+            </lListGroupItemi>
+            <lListGroupItemi className="list-group-item d-flex justify-content-between">
                 <Term>Died </Term>
                 <span>{died}</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between">
+            </lListGroupItemi>
+            <lListGroupItemi className="list-group-item d-flex justify-content-between">
                 <Term>Culture </Term>
                 <span>{culture}</span>
-            </li>
-        </ul>
+            </lListGroupItemi>
+        </ListGroup>
         </>
     )
 };

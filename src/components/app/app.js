@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
+import CharacterPage from '../pages/characterPage';
 import BooksPage from '../pages/BooksPage';
 import HousesPage from '../pages/HousesPage';
 import ErrorMessege from '../errorMessege';
 import ItemList from '../itemList';
 import ItemDetails from '../itemDetails';
 import gotService from '../services/gotServices';
+import ButtonDesepia from '../ButtonDissepia'
 
 
 export default class App extends Component {
@@ -30,7 +31,6 @@ export default class App extends Component {
     }
 
     CharDissepia() {
-        console.log(1);
         this.setState(() => {
             return {
                 dis: !this.state.dis

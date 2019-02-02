@@ -30,7 +30,6 @@ export {
     Field
 }
 export default class ItemDetails extends Component {
-
     state = {
         item: null,
         loading: true,
@@ -68,15 +67,17 @@ export default class ItemDetails extends Component {
 
 
     render() {
+        if (!this.state.item) {
+            return <SelectError>Please celect a character</SelectError>
+        }
+
         if (this.state.error) {
             return <ErrorMessege/>
         }
         if (this.state.loading) {
             return <Spinner/>
         }
-        if (!this.state.item) {
-            return <span className="select-error">Please celect a character</span>
-        }
+
 
         const {item} = this.state;
         const {name} = item;

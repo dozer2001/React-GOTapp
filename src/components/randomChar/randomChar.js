@@ -3,8 +3,8 @@ import gorService from '../services/gotServices'
 import styled from 'styled-components';
 import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
-import {ListGroup, ListGroupItem} from 'reactstrap';
-
+import ItemDetails,{Field} from '../itemDetails';
+import TopRandomBlock from '../TopRandomBlock'
 
 const RandomBlock = styled.div`
     {background-color: #fff;
@@ -24,7 +24,7 @@ export default class RandomChar extends Component {
 
     gotService = new gorService();
     state = {
-        char: {},
+        item: {},
         loading: true,
         error: false
     };
@@ -36,9 +36,9 @@ export default class RandomChar extends Component {
         clearInterval(this.timerId)
     }
 
-    onCharLoaded = (char) => {
+    onCharLoaded = (item) => {
         this.setState({
-            char,
+            item,
             loading: false
         })
 
@@ -51,6 +51,7 @@ export default class RandomChar extends Component {
 
     };
 
+
     updateChar = () => {
         const id = Math.floor(Math.random() * 140 + 25);
         this.gotService.getCharacter(id)
@@ -59,10 +60,10 @@ export default class RandomChar extends Component {
     };
 
     render() {
-        const {char, loading, error} = this.state;
+        const {item, loading, error} = this.state;
         const errorMessage = error ? <ErrorMessege/> : null;
         const spinner = loading ? <Spinner/> : null;
-        const content = !(loading || error) ? <View char={char}/> : null;
+        const content = !(loading || error) ? <TopRandomBlock item={item}/> : null;
         return (
             <RandomBlock className="rounded">
                 {errorMessage}
@@ -73,29 +74,4 @@ export default class RandomChar extends Component {
     }
 }
 
-const View = ({char}) => {
-    const {name, gender, born, died, culture} = char;
-    return (
-        <>
-        <h4>Random Character: {name}</h4>
-        <ListGroup className="list-group list-group-flush">
-            <lListGroupItemi className="list-group-item d-flex justify-content-between">
-                <Term>Gender </Term>
-                <span>{gender}</span>
-            </lListGroupItemi>
-            <lListGroupItemi className="list-group-item d-flex justify-content-between">
-                <Term>Born </Term>
-                <span>{born}</span>
-            </lListGroupItemi>
-            <lListGroupItemi className="list-group-item d-flex justify-content-between">
-                <Term>Died </Term>
-                <span>{died}</span>
-            </lListGroupItemi>
-            <lListGroupItemi className="list-group-item d-flex justify-content-between">
-                <Term>Culture </Term>
-                <span>{culture}</span>
-            </lListGroupItemi>
-        </ListGroup>
-        </>
-    )
-};
+

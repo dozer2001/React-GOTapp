@@ -10,7 +10,7 @@ import RowBlock from '../rowBlock';
 export default class BooksPage extends Component{
     gotService = new gotService();
     state = {
-        selectedBooks: 2,
+        selectedBooks: null,
         error: false
     };
 
@@ -22,7 +22,6 @@ export default class BooksPage extends Component{
         })
     };
     componentDidCatch() {
-
         this.setState({
             error: true
         })

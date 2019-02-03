@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 
-const ItemListUl = styled.ul`
+const ItemListUl = styled(ListGroupItem)`
 
 li{cursor: pointer;}`;
 
@@ -40,13 +41,13 @@ export default class ItemList extends Component {
             const {id} = item;
             const label = this.props.renderItem(item);
             return(
-                <li
+                <ListGroupItem
                     key={id}
                     className="list-group-item"
                      onClick={ () => this.props.onItemSelected(id)}
                      >
                     {label}
-                </li>
+                </ListGroupItem>
             )
         })
     }

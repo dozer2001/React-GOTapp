@@ -33,16 +33,20 @@ export default class ItemDetails extends Component {
     state = {
         item: null,
         loading: true,
-        error: false
+        error: false,
+
     };
 
     componentDidMount() {
         this.updateItem();
+
+
     }
     componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {
             this.updateItem();
         }
+
     }
     componentDidCatch() {
         this.setState({
@@ -53,14 +57,16 @@ export default class ItemDetails extends Component {
     updateItem() {
         const {getData} = this.props;
         const {id} = this.props;
+
         if (!id) {
             return;
         }
         getData(id)
+
             .then((item) => {
                 this.setState({
                     item,
-                    loading: false
+                    loading: false,
                 })
             })
     }
@@ -70,6 +76,7 @@ export default class ItemDetails extends Component {
         if (!this.state.item) {
             return <SelectError>Please celect a character</SelectError>
         }
+
 
         if (this.state.error) {
             return <ErrorMessege/>

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ItemList from '../itemList';
 import ItemDetails,{Field} from '../itemDetails';
-import {Col, Row, Container} from 'reactstrap';
 import ErrorMessege from '../errorMessege';
 import gotService from '../services/gotServices';
 import RowBlock from '../rowBlock';
@@ -43,7 +42,8 @@ export default class HousesPage extends Component{
 
         const housDetals= (
             <ItemDetails id={this.state.selectedHous}
-                         getData={this.gotService.getHouse}>
+                         getData={this.gotService.getHouse}
+                         >
                 <Field field='name' label='Name'/>
                 <Field field='region' label='Region'/>
                 <Field field='words' label='Words'/>
@@ -51,8 +51,10 @@ export default class HousesPage extends Component{
                 <Field field='overlord' label='Overlord'/>
                 <Field field='ancestralWeapons' label='AncestralWeapons'/>
             </ItemDetails>
-        );
+
+    );
         return(
+
             <RowBlock left={itemList} right={housDetals}/>
         )
     }

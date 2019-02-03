@@ -3,7 +3,7 @@ import gorService from '../services/gotServices'
 import styled from 'styled-components';
 import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
-import ItemDetails,{Field} from '../itemDetails';
+
 import TopRandomBlock from '../TopRandomBlock'
 
 const RandomBlock = styled.div`
@@ -14,13 +14,10 @@ const RandomBlock = styled.div`
     margin-bottom: 20px;
     text-align: center;}
     `;
-const Term = styled.span`
-font-weight: bold;`;
+
 
 export default class RandomChar extends Component {
-    constructor() {
-        super();
-    }
+
 
     gotService = new gorService();
     state = {

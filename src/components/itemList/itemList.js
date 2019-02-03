@@ -4,7 +4,7 @@ import Spinner from '../spiner';
 import ErrorMessege from '../errorMessege';
 import {ListGroup, ListGroupItem} from 'reactstrap';
 
-const ItemListUl = styled(ListGroupItem)`
+const ItemListUl = styled(ListGroup)`
 
 li{cursor: pointer;}`;
 
@@ -57,7 +57,9 @@ export default class ItemList extends Component {
         if(this.state.loading){
             return <Spinner/>
         }
-
+        if (this.state.error) {
+            return <ErrorMessege/>
+        }
         if (!itemList) {
             return <Spinner/>
         }

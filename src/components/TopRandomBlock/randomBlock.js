@@ -9,20 +9,20 @@ const TopRandomBlock = ({item}) => {
     return (
         <>
         <h4>Random Character: {name}</h4>
-        <ListGroup className="list-group list-group-flush">
-            <ListGroupItem className="list-group-item d-flex justify-content-between">
+        <ListGroup className=" list-group-flush">
+            <ListGroupItem className="d-flex justify-content-between">
                 <Term>Gender </Term>
                 <span>{gender}</span>
             </ListGroupItem>
-            <ListGroupItem className="list-group-item d-flex justify-content-between">
+            <ListGroupItem className="d-flex justify-content-between">
                 <Term>Born </Term>
                 <span>{born}</span>
             </ListGroupItem>
-            <ListGroupItem className="list-group-item d-flex justify-content-between">
+            <ListGroupItem className="d-flex justify-content-between">
                 <Term>Died </Term>
                 <span>{died}</span>
             </ListGroupItem>
-            <ListGroupItem className="list-group-item d-flex justify-content-between">
+            <ListGroupItem className="d-flex justify-content-between">
                 <Term>Culture </Term>
                 <span>{culture}</span>
             </ListGroupItem>

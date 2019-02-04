@@ -19,6 +19,10 @@ export default class CharacterPage extends  Component{
             error: false
         })
     };
+
+    proverkaPusha(){
+        console.log(this.state);
+    }
     componentDidCatch() {
 
         this.setState({

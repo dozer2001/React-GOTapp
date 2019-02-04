@@ -43,7 +43,6 @@ export default class ItemList extends Component {
             return(
                 <ListGroupItem
                     key={id}
-                    className="list-group-item"
                      onClick={ () => this.props.onItemSelected(id)}
                      >
                     {label}
@@ -65,7 +64,7 @@ export default class ItemList extends Component {
         }
         const items =this.renderItems(itemList);
         return (
-            <ItemListUl className="list-group">
+            <ItemListUl>
                 {items}
             </ItemListUl>
         );
